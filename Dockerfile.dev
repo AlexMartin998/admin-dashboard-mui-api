@@ -1,0 +1,11 @@
+FROM node:18-alpine as deps
+WORKDIR /app
+COPY package.json pnpm-lock.yaml ./
+RUN npm i -g pnpm
+CMD [ "pnpm", "i" ]
+
+
+
+FROM node:18-alpine as runner
+WORKDIR /app
+CMD ["npm", "run", "dev"]

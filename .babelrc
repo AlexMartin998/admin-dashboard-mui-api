@@ -1,0 +1,6 @@
+// testing with mocha & chai
+
+{
+  "presets": ["@babel/preset-env"],
+  "plugins": ["@babel/plugin-transform-runtime"]
+}

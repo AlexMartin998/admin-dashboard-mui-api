@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  npm:
+    image: node:18-alpine
+    user: ${DOCKER_USER}
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: deps
+    container_name: test-app-npm
+    volumes:
+      - .:/app
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: runner
+    image: admin-dashboard
+    user: ${DOCKER_USER}
+    container_name: admin-dashboard-api
+    volumes:
+      - .:/app
+      - ./:/workspace:cached
+    ports:
+      - 3300:3000
+    depends_on:
+      mongo:
+        condition: service_healthy
+      npm:
+        condition: service_completed_successfully
+
+  mongo:
+    image: mongo:6.0
+    container_name: ${MONGO_DB_NAME}
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    volumes:
+      - admin-dash-data:/data/db
+    command: ['--auth']
+    healthcheck:
+      test: ["CMD","mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+
+volumes:
+  admin-dash-data:
+    external: false
