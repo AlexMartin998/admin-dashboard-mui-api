@@ -1,37 +1,37 @@
 version: '3.9'
 
 services:
-  pnpm:
-    image: node:18-alpine
-    user: ${DOCKER_USER}
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-      target: deps
-    container_name: test-app-pnpm
-    volumes:
-      - .:/app
+  # pnpm:
+  #   image: node:18-alpine
+  #   user: ${DOCKER_USER}
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #     target: deps
+  #   container_name: test-app-pnpm
+  #   volumes:
+  #     - .:/app
 
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-      target: runner
-    image: admin-dashboard
-    user: ${DOCKER_USER}
-    container_name: admin-dashboard-api
-    volumes:
-      - .:/app
-      - ./:/workspace:cached
-    ports:
-      - ${PORT}:${PORT}
-    depends_on:
-      - mongodb
-      - pnpm
-      # mongo:
-      #   condition: service_healthy
-      # npm:
-      #   condition: service_completed_successfully
+  # api:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #     target: runner
+  #   image: admin-dashboard
+  #   user: ${DOCKER_USER}
+  #   container_name: admin-dashboard-api
+  #   volumes:
+  #     - .:/app
+  #     - ./:/workspace:cached
+  #   ports:
+  #     - ${PORT}:${PORT}
+  #   depends_on:
+  #     - mongodb
+  #     - pnpm
+  #     # mongo:
+  #     #   condition: service_healthy
+  #     # npm:
+  #     #   condition: service_completed_successfully
 
   mongodb:
     image: mongo:6.0
@@ -43,7 +43,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
     volumes:
-      - admin-dash-data:/data/db
+      - mongodb:/data/db
     command: ['--auth']
     healthcheck:
       test: ["CMD","mongosh", "--eval", "db.adminCommand('ping')"]
@@ -54,5 +54,5 @@ services:
 
 
 volumes:
-  admin-dash-data:
-    external: false
+  mongodb:
+    external: true
