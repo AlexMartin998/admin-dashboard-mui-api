@@ -18,10 +18,9 @@ export const validate = (req, res, next) => {
 
 const validateMongoId = () => [param('id', 'Invalid ID').isMongoId(), validate];
 
-// users
-export const userIdRules = () => [
+export const idRules = collection => [
   ...validateMongoId(),
 
-  param('id').custom((id, { req }) => idExistInDB(id, 'user', req)),
+  param('id').custom((id, { req }) => idExistInDB(id, collection, req)),
   validate,
 ];

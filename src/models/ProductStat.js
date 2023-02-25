@@ -16,7 +16,7 @@ const ProductStatSchema = new Schema(
     },
     year: {
       type: Number,
-      required: [true, 'Year is required'],
+      // required: [true, 'Year is required'],
     },
 
     monthlyData: [

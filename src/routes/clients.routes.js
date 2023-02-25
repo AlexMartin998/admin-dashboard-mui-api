@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
 import { getUserById } from '../controllers/index.js';
-import { userIdRules } from '../middlewares/index.js';
+import { idRules } from '../middlewares/index.js';
 
 const router = Router();
 
-router.route('/:id').get(userIdRules(), getUserById);
+router.route('/:id').get(idRules('user'), getUserById);
 
 export default router;
