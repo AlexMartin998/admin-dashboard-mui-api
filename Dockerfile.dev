@@ -8,4 +8,5 @@ CMD [ "pnpm", "i" ]
 
 FROM node:18-alpine as runner
 WORKDIR /app
+EXPOSE 3000
 CMD ["npm", "run", "dev"]

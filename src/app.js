@@ -1,7 +1,10 @@
+console.clear();
+
 import express from 'express';
 
 import './db/db.js';
 import { notFoundMiddleware, setupMiddlewares } from './middlewares/index.js';
+import { clientsRoutes } from './routes/index.js';
 
 // Initializations:
 const app = express();
@@ -10,9 +13,7 @@ const app = express();
 setupMiddlewares(app);
 
 // Routes
-app.get('/', (_req, res) => {
-  res.status(200).json({ msg: 'GET' });
-});
+app.use('/clients', clientsRoutes);
 
 app.use(notFoundMiddleware);
 
