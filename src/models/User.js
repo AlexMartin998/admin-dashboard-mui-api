@@ -65,10 +65,12 @@ const UserSchema = new Schema(
 UserSchema.methods.toJSON = function () {
   const user = this.toObject();
 
-  user.uid = user._id;
+  user.id = user._id;
   delete user.password;
   delete user.state;
   delete user._id;
+  delete user.createdAt;
+  delete user.updatedAt;
 
   return user;
 };

@@ -9,9 +9,11 @@ export const executeSeed = async (req, res) => {
         .status(401)
         .json({ message: 'Seed must be executed in dev mode' });
 
-    await insertUsersData();
-    await insertProductsData();
-    await insertProductStatData();
+    await Promise.all([
+      insertUsersData(),
+      insertProductsData(),
+      insertProductStatData(),
+    ]);
 
     return res.status(200).json({ message: 'Seed excecuted' });
   } catch (error) {
