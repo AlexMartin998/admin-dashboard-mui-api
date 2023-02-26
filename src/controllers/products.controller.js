@@ -1,5 +1,6 @@
 import { Product, ProductStat } from '../models/index.js';
 
+// TODO: function aggregations
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find();

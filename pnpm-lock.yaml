@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   compression: ^1.7.4
   cors: ^2.8.5
+  country-iso-2-to-3: ^1.1.0
   dotenv: ^16.0.3
   eslint: ^8.31.0
   express: ^4.18.2
@@ -16,6 +17,7 @@ specifiers:
 dependencies:
   compression: 1.7.4
   cors: 2.8.5
+  country-iso-2-to-3: 1.1.0
   dotenv: 16.0.3
   express: 4.18.2
   express-validator: 6.15.0
@@ -1163,6 +1165,10 @@ packages:
     dependencies:
       object-assign: 4.1.1
       vary: 1.1.2
+    dev: false
+
+  /country-iso-2-to-3/1.1.0:
+    resolution: {integrity: sha512-+xaB6XPuuLuSQEjejWXjff7s5AMyisPk3jBmIqM7aymup79mEcinNkUiIpe4VedSPWCT+/bMW/EDJvRaiDaWKw==}
     dev: false
 
   /cross-spawn/7.0.3:

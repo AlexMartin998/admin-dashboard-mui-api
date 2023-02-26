@@ -1,4 +1,5 @@
 import { Transaction, User } from '../models/index.js';
+import getCountryIso3 from 'country-iso-2-to-3';
 
 export const getUserById = async (req, res) => {
   const { userDb } = req;
@@ -55,6 +56,45 @@ export const getTransactions = async (req, res) => {
     ]);
 
     return res.status(200).json({ transactions, total });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Something went wrong!' });
+  }
+};
+
+export const getGeography = async (req, res) => {
+  try {
+    const users = await User.find();
+
+    /* const mappedLocations = users.reduce((acc, { country }) => {
+      const countryISO3 = getCountryIso3(country);
+      if (!acc[countryISO3]) {
+        acc[countryISO3] = 0;
+      }
+
+      acc[countryISO3]++;
+      return acc;
+    }, {});
+
+    const formattedLocations = Object.entries(mappedLocations).map(
+      ([country, count]) => ({ id: country, value: count })
+    );
+
+    return res.status(200).json(formattedLocations); 
+    */
+    const mappedLocations = new Map();
+    users.forEach(({ country }) => {
+      const countryISO3 = getCountryIso3(country);
+      const count = mappedLocations.get(countryISO3) || 0;
+      mappedLocations.set(countryISO3, count + 1);
+    });
+
+    const formattedLocations = Array.from(mappedLocations, ([id, value]) => ({
+      id,
+      value,
+    }));
+
+    return res.status(200).json(formattedLocations);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Something went wrong!' });

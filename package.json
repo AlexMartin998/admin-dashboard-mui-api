@@ -17,6 +17,7 @@
   "dependencies": {
     "compression": "^1.7.4",
     "cors": "^2.8.5",
+    "country-iso-2-to-3": "^1.1.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-validator": "^6.15.0",
@@ -26,7 +27,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
-    "eslint": "^8.31.0"
+    "eslint": "^8.31.0",
+    "nodemon": "^2.0.20"
   }
 }
