@@ -26,11 +26,13 @@ const OverallStatSchema = new Schema(
         totalUnits: Number,
       },
     ],
-    dailyData: {
-      date: String,
-      totalSales: Number,
-      totalUnits: Number,
-    },
+    dailyData: [
+      {
+        date: String,
+        totalSales: Number,
+        totalUnits: Number,
+      },
+    ],
     salesByCategory: {
       // js obj
       type: Map,
