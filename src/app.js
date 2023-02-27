@@ -4,7 +4,12 @@ import express from 'express';
 
 import './db/db.js';
 import { notFoundMiddleware, setupMiddlewares } from './middlewares/index.js';
-import { clientsRoutes, productsRoutes, salesRoutes } from './routes/index.js';
+import {
+  clientsRoutes,
+  managementRoutes,
+  productsRoutes,
+  salesRoutes,
+} from './routes/index.js';
 import { seedRouter } from './seed/index.js';
 
 // Initializations:
@@ -17,6 +22,7 @@ setupMiddlewares(app);
 app.use('/clients', clientsRoutes);
 app.use('/products', productsRoutes);
 app.use('/sales', salesRoutes);
+app.use('/management', managementRoutes);
 
 // seed - only in dev
 app.use('/seed', seedRouter);
