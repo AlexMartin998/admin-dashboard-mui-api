@@ -1,10 +1,17 @@
 import { STAGE } from '../config/index.js';
-import { Product, ProductStat, Transaction, User } from '../models/index.js';
+import {
+  OverallStat,
+  Product,
+  ProductStat,
+  Transaction,
+  User,
+} from '../models/index.js';
 import {
   dataProduct,
   dataProductStat,
   dataUser,
   dataTransaction,
+  dataOverallStat,
 } from './data/index.js';
 
 export const executeSeed = async (req, res) => {
@@ -19,6 +26,7 @@ export const executeSeed = async (req, res) => {
       insertProductsData(),
       insertProductStatData(),
       insertTransactionsData(),
+      insertOverallStatData(),
     ]);
 
     return res.status(200).json({ message: 'Seed excecuted' });
@@ -46,4 +54,9 @@ const insertProductStatData = async () => {
 const insertTransactionsData = async () => {
   await Transaction.deleteMany({});
   await Transaction.insertMany(dataTransaction);
+};
+
+const insertOverallStatData = async () => {
+  await OverallStat.deleteMany({});
+  await OverallStat.insertMany(dataOverallStat);
 };
