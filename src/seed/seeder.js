@@ -1,5 +1,6 @@
 import { STAGE } from '../config/index.js';
 import {
+  AffiliateStat,
   OverallStat,
   Product,
   ProductStat,
@@ -12,6 +13,7 @@ import {
   dataUser,
   dataTransaction,
   dataOverallStat,
+  dataAffiliateStat,
 } from './data/index.js';
 
 export const executeSeed = async (req, res) => {
@@ -27,6 +29,7 @@ export const executeSeed = async (req, res) => {
       insertProductStatData(),
       insertTransactionsData(),
       insertOverallStatData(),
+      insertAffiliateStatData(),
     ]);
 
     return res.status(200).json({ message: 'Seed excecuted' });
@@ -59,4 +62,9 @@ const insertTransactionsData = async () => {
 const insertOverallStatData = async () => {
   await OverallStat.deleteMany({});
   await OverallStat.insertMany(dataOverallStat);
+};
+
+const insertAffiliateStatData = async () => {
+  await AffiliateStat.deleteMany({});
+  await AffiliateStat.insertMany(dataAffiliateStat);
 };
