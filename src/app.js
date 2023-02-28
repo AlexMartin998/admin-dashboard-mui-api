@@ -6,6 +6,7 @@ import './db/db.js';
 import { notFoundMiddleware, setupMiddlewares } from './middlewares/index.js';
 import {
   clientsRoutes,
+  generalRoutes,
   managementRoutes,
   productsRoutes,
   salesRoutes,
@@ -23,6 +24,7 @@ app.use('/clients', clientsRoutes);
 app.use('/products', productsRoutes);
 app.use('/sales', salesRoutes);
 app.use('/management', managementRoutes);
+app.use('/general', generalRoutes);
 
 // seed - only in dev
 app.use('/seed', seedRouter);
