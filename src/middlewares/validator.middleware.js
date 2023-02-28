@@ -1,4 +1,4 @@
-import { param, validationResult } from 'express-validator';
+import { param, validationResult, body } from 'express-validator';
 import { idExistInDB } from '../helpers/index.js';
 
 export const validate = (req, res, next) => {
@@ -24,3 +24,13 @@ export const idRules = collection => [
   param('id').custom((id, { req }) => idExistInDB(id, collection, req)),
   validate,
 ];
+
+// Auth
+export const emailPassRules = () => [
+  body('email', 'Invalid email!').isEmail(),
+  body('password', 'Password must be longer than 6 characters!').isLength({
+    min: 6,
+  }),
+];
+
+export const loginRules = () => [...emailPassRules(), validate];

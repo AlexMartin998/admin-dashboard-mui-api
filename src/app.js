@@ -5,6 +5,7 @@ import express from 'express';
 import './db/db.js';
 import { notFoundMiddleware, setupMiddlewares } from './middlewares/index.js';
 import {
+  authRouter,
   clientsRoutes,
   generalRoutes,
   managementRoutes,
@@ -20,6 +21,7 @@ const app = express();
 setupMiddlewares(app);
 
 // Routes
+app.use('/auth', authRouter);
 app.use('/clients', clientsRoutes);
 app.use('/products', productsRoutes);
 app.use('/sales', salesRoutes);
