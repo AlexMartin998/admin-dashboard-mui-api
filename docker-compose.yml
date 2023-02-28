@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # target: ${STAGE}
+    container_name: ecomvision-api
+    image: ecomvision-api
+    depends_on:
+      - db
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      MONGODB_URI: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_DB_NAME}:27017
+      DB_NAME: ${MONGO_DB_NAME}
+
+  db:
+    image: mongo:6.0
+    container_name: ${MONGO_DB_NAME}
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    volumes:
+      - ecomvison_db:/data/db
+    command: ['--auth']
+
+volumes:
+  ecomvison_db:
+    external: false
