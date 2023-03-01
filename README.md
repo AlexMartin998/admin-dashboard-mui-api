@@ -24,6 +24,8 @@ This dashboard app is built with React, Express, MongoDB, and Node is a web-base
 
 Create `.env` file based on `.env.template`
 
+#### Deps and run
+
 ```bash
 # install pnpm
 npm i -g pnpm
@@ -37,6 +39,14 @@ docker compose -f docker-compose.dev.yml up --build
 # stop and remove containers & networks
 docker compose -f docker-compose.dev.yml down
 
+```
+
+##### Pull image
+
+You can also download the image already created from the Docker Hub
+
+```bash
+docker push adralx/ecomvision-mern
 ```
 
 ### Prod Env
@@ -73,7 +83,7 @@ npm run test-mocha
 
 To see the real-time behavior you can log in with:
 
-- User 1: `adrian@test.com` and password `test123`.
+- User: `swelbeck12@ycombinator.com` and password `RSjzmAjnq`
 
 <br/>
 <a href="https://ecomvision-reacmuijs-alx.netlify.app/auth/login" target="blank">Demo</a>
@@ -84,7 +94,9 @@ To see the real-time behavior you can log in with:
 <img width="1604" src="https://raw.githubusercontent.com/AlexMartin998/admin-dashboard-mui/main/.screenshots/dashboard.png">
 
 
+
 | | | 
 |:-------------------------:|:-------------------------:|
 | <img width="1604" src="https://raw.githubusercontent.com/AlexMartin998/admin-dashboard-mui/main/.screenshots/products.png">    |  <img width="1604" src="https://raw.githubusercontent.com/AlexMartin998/admin-dashboard-mui/main/.screenshots/daily-picker.png"> 
 | <img width="1604" src="https://raw.githubusercontent.com/AlexMartin998/admin-dashboard-mui/main/.screenshots/geography.png">    |  <img width="1604" src="https://raw.githubusercontent.com/AlexMartin998/admin-dashboard-mui/main/.screenshots/transactions.png"> 
+
