@@ -46,7 +46,7 @@ docker compose -f docker-compose.dev.yml down
 You can also download the image already created from the Docker Hub
 
 ```bash
-docker push adralx/ecomvision-mern
+docker pull adralx/ecomvision-mern
 ```
 
 ### Prod Env
